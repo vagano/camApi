@@ -48,7 +48,7 @@ def get_presets_list():
                 token_name = str(p.Name)
                 presets_json[token] = {
                     "token_name": token_name,
-                    "name_ru": presets_dict[token_name]['ru'].encode('cp-1251'),
+                    "name_ru": presets_dict[token_name]['ru'].encode('cp1251'),
                     "name_en": presets_dict[token_name]['en'].encode('utf-8')
                 }
                 return str(presets_json)
