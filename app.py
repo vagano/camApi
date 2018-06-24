@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, jsonify
 from ptzcam import PtzCam
 
 app = Flask(__name__)
@@ -7,11 +7,18 @@ app = Flask(__name__)
 def _get_camera():
     cam = getattr(g, '_cam', None)
     if cam is None:
-        cam = g._cam = PtzCam('192.168.1.110', 8999, 'admin', '', '/home/pi/.local/wsdl/')
+        cam = g._cam = PtzCam('192.168.1.110', 8999, 'admin', '', '/home/pi/camApi/venv/wsdl/')
     return cam
 
 
-@app.route('/')
+def _get_presets():
+    presets = getattr(g, '_presets', None)
+    if presets is None:
+        cam = _get_camera()
+        presets = g._presets = jsonify(cam.get_presets())
+    return presets
+
+@app.route('/api/')
 def hello_world():
     mycam = ONVIFCamera('85.12.222.142', 8999, 'admin', '', '/Users/vagano/PycharmProjects/camApi/venv/wsdl')
     # Create ptz service

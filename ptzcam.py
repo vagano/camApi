@@ -14,8 +14,9 @@ class PtzCam():
         self.requestg = self.ptz.create_type('GotoPreset')
         self.requestg.ProfileToken = self.media_profile._token
 
-    def get_preset(self):
+    def get_presets(self):
         self.ptzPresetsList = self.ptz.GetPresets(self.requestc)
+        return self.ptzPresetsList
 
     def goto_preset(self, preset_token):
         self.requestg.PresetToken = preset_token
