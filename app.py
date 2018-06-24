@@ -42,7 +42,7 @@ def _get_presets():
 def get_presets_list():
     presets = _get_presets()
     for p in presets:
-        print (p._token, '-', p.name)
+        print (str(p._token), '-', str(p.name))
     return str(presets)
 
 
