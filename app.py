@@ -42,13 +42,14 @@ def get_presets_list():
         with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
             presets_dict = json.load(jsondictfile)
 
-        for p in presets:
-            presets_json[p._token]['token_name'] = p.Name
-            try:
+        try:
+            for p in presets:
+                presets_json[p._token]['token_name'] = p.Name
+
                 presets_json[p._token]['name_ru'] = presets_dict[p.Name]['ru']
                 presets_json[p._token]['name_en'] = presets_dict[p.Name]['en']
-            except Exception as e:
-                return str(e)
+        except Exception as e:
+            return str(e)
 
         return 'OK'
     #
