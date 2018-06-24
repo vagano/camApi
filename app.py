@@ -19,14 +19,10 @@ def _get_presets():
     return presets
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-
-@app.route('/cam/')
-def hello_world2():
-    return 'Hello World from Cam!'
+@app.route('/cam/api/get_presets_list')
+def get_presets_list():
+    presets = _get_presets()
+    return presets
 
 
 if __name__ == '__main__':
