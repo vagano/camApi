@@ -48,8 +48,8 @@ def get_presets_list():
                 token_name = str(p.Name)
                 presets_json[token] = {
                     "token_name": token_name,
-                    "name_ru": presets_dict[token_name]['ru'].encode('cp1251'),
-                    "name_en": presets_dict[token_name]['en'].encode('utf-8')
+                    "name_ru": presets_dict[token_name]['ru'],
+                    "name_en": presets_dict[token_name]['en']
                 }
                 return str(presets_json)
         except Exception as e:
