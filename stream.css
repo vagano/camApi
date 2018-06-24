@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Calibri;
+
+    font-size: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+#videoContainer {
+    background: #ccdae2;
+    width: 100%;
+    height: calc(100vw/4*3);
+}
+
+#video {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+#buttonsContainer {
+    width: 100%;
+    padding: 20px;
+    float: left;
+}
+
+.button {
+    width: 20%;
+    height: 20%;
+    background: aquamarine;
+    display: block;
+    font-size: 0.5em;
+}

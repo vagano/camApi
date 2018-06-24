@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/cam/api/*": {"origins": "*"}})
 
 
 def _get_camera():

@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>hls.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stream.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+            lang = getUrlParameter("lang");
+
+            var video = document.getElementById('video');
+
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                hls.loadSource('https://mediarecorderui.uomz.ru/stream/out.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    video.play();
+                });
+            }
+            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = 'https://mediarecorderui.uomz.ru/stream/out.m3u8';
+                video.addEventListener('canplay', function () {
+                    video.play();
+                });
+            }
+
+            if (lang == "ru") {
+                $(".en").hide();
+                $(".ru").show();
+            }
+            else {
+                $(".ru").hide();
+                $(".en").show();
+            }
+
+            $('.button').click(function () {
+                var preset = $(this).attr('data-preset');
+                $.ajax({
+                    type: 'get',
+                    url: 'https://mediarecorderui.uomz.ru/cam/api/move_to_preset/'+preset,
+                    headers: {"Authorization": "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c"},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c");
+                    },
+                    success: function () {
+                        console.log('request was sent')
+                    },
+                    error: function () {
+                        console.log('request wasnt successful')
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<h1 class="en">Look at city views</h1>
+<h1 class="ru">Посмотрите на виды города</h1>
+<div id="videoContainer">
+    <video id="video" autoplay></video>
+</div>
+
+<div id="buttonsContainer">
+    <a class="button" data-preset="1"><span class="ru">Стелла</span><span class="en">Information stella</span></a>
+</div>
+</body>
+</html>
