@@ -2,12 +2,14 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, g, jsonify
 from ptzcam import PtzCam
+from flask_cors import CORS
 
 import json
 import os
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 def _get_camera():

@@ -10,5 +10,49 @@
   "Administration":{
     "ru":"Городская администрация",
     "en":"City Hall"
+  },
+  "Church":{
+    "ru":"Церковь",
+    "en":"Church"
+  },
+  "LeninaStreet":{
+    "ru":"Проспект Ленина",
+    "en":"Lenina ave."
+  },
+  "URFU":{
+    "ru":"Уральский Федеральный Университет",
+    "en":"Ural Federal University"
+  },
+  "Antey":{
+    "ru":"Антей",
+    "en":"Antey business center"
+  },
+  "Visockiy":{
+    "ru":"Высоцкий",
+    "en":"Vysotsky business center"
+  },
+  "Alatyr":{
+    "ru":"ТЦ Алатырь",
+    "en":"Alatyr shopping center"
+  },
+  "Panorama1":{
+    "ru":"Вид на центр города",
+    "en":"View of the city center"
+  },
+  "Panorama2":{
+    "ru":"Сквер у стадиона",
+    "en":"Square at the stadium"
+  },
+  "Panorama3":{
+    "ru":"Окрестности стадиона",
+    "en":"Surroundings of the stadium"
+  },
+  "Panorama4":{
+    "ru":"Вид на Уральские горы",
+    "en":"View of the Ural Mountains"
+  },
+  "Stadion":{
+    "ru":"Стадион",
+    "en":"Stadium"
   }
 }
