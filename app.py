@@ -43,7 +43,7 @@ def get_presets_list():
     presets = _get_presets()
     for p in presets:
         print p
-    return str(presets)
+    # return str(presets)
 
 
 if __name__ == '__main__':
