@@ -1,5 +1,5 @@
 import logging
-
+from logging.handlers import RotatingFileHandler
 from flask import Flask, g, jsonify
 from ptzcam import PtzCam
 
@@ -36,4 +36,7 @@ def get_presets_list():
 
 
 if __name__ == '__main__':
+    handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.DEBUG)
+    app.logger.addHandler(handler)
     app.run()
