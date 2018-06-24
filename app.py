@@ -46,11 +46,11 @@ def get_presets_list():
             for p in presets:
                 token = str(p._token)
                 token_name = str(p.Name)
-                presets_json[token]['token_name'] = token_name
-
-                presets_json[token]['name_ru'] = presets_dict[token_name]['ru']
-                presets_json[token]['name_en'] = presets_dict[token_name]['en']
-
+                presets_json[token] = {
+                    "token_name": token_name,
+                    "name_ru": presets_dict[token_name]['ru'],
+                    "name_en": presets_dict[token_name]['en']
+                }
                 return str(presets_json)
         except Exception as e:
             return "Errore: "+str(e)
