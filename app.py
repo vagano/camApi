@@ -38,10 +38,11 @@ def get_presets_list():
         presets = _get_presets()
         presets_json = {}
 
+
+        with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
+            presets_dict = json.load(jsondictfile)
+
     return 'OK'
-    #     with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
-    #         presets_dict = json.load(jsondictfile)
-    #
     #     for p in presets:
     #         presets_json[p._token]['token_name'] = p.Name
     #         try:
