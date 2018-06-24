@@ -164,7 +164,7 @@ class ptzcam():
     def get_presets(self):
         self.ptzPresetsList = self.ptz.GetPresets(self.requestc)
         print 'Got preset:'
-        print self.ptzPresetsList[0]
+        print self.ptzPresetsList
         print
 
     def goto_preset(self, name):
@@ -186,61 +186,11 @@ if __name__ == '__main__':
     # Do all setup initializations
     ptz = ptzcam()
 
-    # *****************************************************************************
-    # IP camera motion tests
-    # *****************************************************************************
-    print 'Starting tests...'
-
-    # Set preset
-    ptz.move_pan(1.0, 1)  # move to a new home position
-    ptz.set_preset('home')
-
-    # move right -- (velocity, duration of move)
-    ptz.move_pan(1.0, 2)
-
-    # move left
-    ptz.move_pan(-1.0, 2)
-
-    # move down
-    ptz.move_tilt(-1.0, 2)
-
-    # Move up
-    ptz.move_tilt(1.0, 2)
-
-    # zoom in
-    ptz.zoom(8.0, 2)
-
-    # zoom out
-    ptz.zoom(-8.0, 2)
-
-    # Absolute pan-tilt (pan position, tilt position, velocity)
-    # DOES NOT RESULT IN CAMERA MOVEMENT
-    ptz.move_abspantilt(-1.0, 1.0, 1.0)
-    ptz.move_abspantilt(1.0, -1.0, 1.0)
-
-    # Relative move (pan increment, tilt increment, velocity)
-    # DOES NOT RESULT IN CAMERA MOVEMENT
-    ptz.move_relative(0.5, 0.5, 8.0)
 
     # Get presets
-    ptz.get_preset()
+    ptz.get_presets()
     # Go back to preset
-    ptz.goto_preset('home')
+    # ptz.goto_preset('home')
 
     exit()
-
-# *****************************************************************************
-# IP Camera control
-# Control methods:
-#   rtsp video streaming via OpenCV for frame capture
-#   ONVIF for PTZ control
-#   ONVIF for setup selections
-#
-# Starting point for this code was from:
-# https://github.com/quatanium/python-onvif
-# *****************************************************************************
-
-# import sys
-
-# sys.path.append('/usr/local/lib/python2.7/dist-packages/onvif')
 
