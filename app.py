@@ -41,9 +41,9 @@ def _get_presets():
 @app.route('/cam/api/get_presets_list/')
 def get_presets_list():
     presets = _get_presets()
-    for p in presets:
-        print p
-    # return str(presets)
+    p = presets[0]
+
+    return str(p._token)
 
 
 if __name__ == '__main__':
