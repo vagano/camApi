@@ -41,11 +41,13 @@ def _get_presets():
 @app.route('/cam/api/get_presets_list/')
 def get_presets_list():
     presets = _get_presets()
+    for p in presets:
+        print (p._token, '-', p.name)
     return str(presets)
 
 
 if __name__ == '__main__':
-    handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
+    handler = RotatingFileHandler('/home/pi/camApi/app.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.DEBUG)
     app.logger.addHandler(handler)
     app.run()
