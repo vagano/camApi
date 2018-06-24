@@ -3,16 +3,10 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, g, jsonify
 from ptzcam import PtzCam
 
-from flask_debugtoolbar import DebugToolbarExtension
-
-import socket
-socket.setdefaulttimeout(3000)
+import json
+import os
 
 app = Flask(__name__)
-app.debug = True
-app.config['SECRET_KEY'] = 'slkdjhfkjsdfjkdljaslkgfksalvdshjdk'
-
-toolbar = DebugToolbarExtension(app)
 
 
 def _get_camera():
@@ -35,7 +29,6 @@ def _get_presets():
         return presets
     except Exception as e:
         app.logger.error(str(e))
-        return e
 
 
 @app.route('/cam/api/get_presets_list/')
@@ -50,4 +43,23 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('/home/pi/camApi/app.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.DEBUG)
     app.logger.addHandler(handler)
+
+    if not os.path.isfile('presets.json'):
+        presets = _get_presets()
+        presets_json = {}
+
+        with open('presets_dict.json','r') as jsondictfile:
+            presets_dict = json.load(jsondictfile)
+
+        for p in presets:
+            presets_json[p._token]['token_name'] = p.Name
+            try:
+                presets_json[p._token]['name_ru'] = presets_dict[p.Name]['ru']
+                presets_json[p._token]['name_en'] = presets_dict[p.Name]['en']
+            except:
+                pass
+
+        with open('presets.json','w') as jsonfile:
+            json.dump(presets_json, jsonfile)
+
     app.run()
