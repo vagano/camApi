@@ -69,6 +69,16 @@ def get_presets_list():
     return jsonify(presets_json)
 
 
+@app.route('/cam/api/move_to_preset/<token:int>')
+def move_to_preset(token):
+    try:
+        cam = _get_camera()
+        cam.goto_preset(token)
+        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+    except:
+        return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
+
+
 if __name__ == '__main__':
     handler = RotatingFileHandler('/home/pi/camApi/app.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.DEBUG)
