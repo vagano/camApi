@@ -7,6 +7,7 @@ import json
 import os
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 
 def _get_camera():
@@ -56,7 +57,7 @@ def get_presets_list():
 
         try:
             with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
-                json.dump(presets_json, jsonfile, ensure_ascii=False)
+                json.dump(jsonify(presets_json), jsonfile, ensure_ascii=False)
         except Exception as e:
             return str(e)
     else:
