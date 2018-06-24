@@ -61,5 +61,5 @@ if __name__ == '__main__':
 
         with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
             json.dump(presets_json, jsonfile)
-
+    app.logger.info('file was written')
     app.run()
