@@ -3,10 +3,16 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, g, jsonify
 from ptzcam import PtzCam
 
+from flask_debugtoolbar import DebugToolbarExtension
+
 import socket
 socket.setdefaulttimeout(3000)
 
 app = Flask(__name__)
+app.debug = True
+app.config['SECRET_KEY'] = 'slkdjhfkjsdfjkdljaslkgfksalvdshjdk'
+
+toolbar = DebugToolbarExtension(app)
 
 
 def _get_camera():

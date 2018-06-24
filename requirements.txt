@@ -1,6 +1,11 @@
+blinker==1.4
 click==6.7
 Flask==1.0.2
+Flask-DebugToolbar==0.10.1
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
+onvif==0.2.0
+suds==0.4
+suds-passworddigest==0.1.2
 Werkzeug==0.14.1
