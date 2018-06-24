@@ -33,16 +33,6 @@ def _get_presets():
 
 @app.route('/cam/api/get_presets_list/')
 def get_presets_list():
-    presets = _get_presets()
-    p = presets[0]
-
-    return str(p._token)
-
-
-if __name__ == '__main__':
-    handler = RotatingFileHandler('/home/pi/camApi/app.log', maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.DEBUG)
-    app.logger.addHandler(handler)
 
     if not os.path.isfile('/home/pi/camApi/presets.json'):
         presets = _get_presets()
@@ -61,5 +51,16 @@ if __name__ == '__main__':
 
         with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
             json.dump(presets_json, jsonfile)
+    else:
+        with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
+            presets_json = json.load(jsonfile)
+
+    return jsonify(presets_json)
+
+
+if __name__ == '__main__':
+    handler = RotatingFileHandler('/home/pi/camApi/app.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.DEBUG)
+    app.logger.addHandler(handler)
     app.logger.info('file was written')
     app.run()
