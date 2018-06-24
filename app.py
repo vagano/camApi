@@ -3,6 +3,9 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, g, jsonify
 from ptzcam import PtzCam
 
+import socket
+socket.setdefaulttimeout(3000)
+
 app = Flask(__name__)
 
 
@@ -14,7 +17,6 @@ def _get_camera():
         return cam
     except Exception as e:
         app.logger.error(str(e))
-        return '500'
 
 
 def _get_presets():
@@ -26,7 +28,7 @@ def _get_presets():
         return presets
     except Exception as e:
         app.logger.error(str(e))
-        return '500'
+        return e
 
 
 @app.route('/cam/api/get_presets_list/')
