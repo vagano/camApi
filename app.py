@@ -18,9 +18,15 @@ def _get_presets():
         presets = g._presets = jsonify(cam.get_presets())
     return presets
 
-@app.route('/api/')
+
+@app.route('/')
 def hello_world():
     return 'Hello World!'
+
+
+@app.route('/cam/')
+def hello_world2():
+    return 'Hello World from Cam!'
 
 
 if __name__ == '__main__':
