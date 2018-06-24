@@ -51,19 +51,16 @@ def get_presets_list():
                     "name_ru": presets_dict[token_name]['ru'],
                     "name_en": presets_dict[token_name]['en']
                 }
-                return str(presets_json)
         except Exception as e:
             return "Errore: "+str(e)
 
-        return 'OK'
-    #
-    #     with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
-    #         json.dump(presets_json, jsonfile)
-    # else:
-    #     with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
-    #         presets_json = json.load(jsonfile)
-    #
-    # return str(jsonify(presets_json))
+        with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
+            json.dump(presets_json, jsonfile)
+    else:
+        with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
+            presets_json = json.load(jsonfile)
+
+    return str(jsonify(presets_json))
 
 
 if __name__ == '__main__':
