@@ -47,8 +47,8 @@ def get_presets_list():
             try:
                 presets_json[p._token]['name_ru'] = presets_dict[p.Name]['ru']
                 presets_json[p._token]['name_en'] = presets_dict[p.Name]['en']
-            except:
-                pass
+            except Exception as e:
+                return str(e)
 
         return 'OK'
     #
