@@ -20,12 +20,6 @@ def _get_presets():
 
 @app.route('/api/')
 def hello_world():
-    mycam = ONVIFCamera('85.12.222.142', 8999, 'admin', '', '/Users/vagano/PycharmProjects/camApi/venv/wsdl')
-    # Create ptz service
-    ptz_service = mycam.create_ptz_service()
-    # Get ptz configuration
-    # mycam.ptz.GetConfiguration()
-    print(ptz_service.GetConfiguration())
     return 'Hello World!'
 
 

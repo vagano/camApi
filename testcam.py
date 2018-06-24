@@ -161,7 +161,7 @@ class ptzcam():
         print self.preset
         print
 
-    def get_preset(self):
+    def get_presets(self):
         self.ptzPresetsList = self.ptz.GetPresets(self.requestc)
         print 'Got preset:'
         print self.ptzPresetsList[0]
