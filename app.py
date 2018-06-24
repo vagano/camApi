@@ -38,24 +38,25 @@ def get_presets_list():
         presets = _get_presets()
         presets_json = {}
 
-        with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
-            presets_dict = json.load(jsondictfile)
-
-        for p in presets:
-            presets_json[p._token]['token_name'] = p.Name
-            try:
-                presets_json[p._token]['name_ru'] = presets_dict[p.Name]['ru']
-                presets_json[p._token]['name_en'] = presets_dict[p.Name]['en']
-            except:
-                pass
-
-        with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
-            json.dump(presets_json, jsonfile)
-    else:
-        with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
-            presets_json = json.load(jsonfile)
-
-    return str(jsonify(presets_json))
+    return 'OK'
+    #     with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
+    #         presets_dict = json.load(jsondictfile)
+    #
+    #     for p in presets:
+    #         presets_json[p._token]['token_name'] = p.Name
+    #         try:
+    #             presets_json[p._token]['name_ru'] = presets_dict[p.Name]['ru']
+    #             presets_json[p._token]['name_en'] = presets_dict[p.Name]['en']
+    #         except:
+    #             pass
+    #
+    #     with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
+    #         json.dump(presets_json, jsonfile)
+    # else:
+    #     with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
+    #         presets_json = json.load(jsonfile)
+    #
+    # return str(jsonify(presets_json))
 
 
 if __name__ == '__main__':
