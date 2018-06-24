@@ -55,7 +55,7 @@ def get_presets_list():
         with open('/home/pi/camApi/presets.json', 'r') as jsonfile:
             presets_json = json.load(jsonfile)
 
-    return jsonify(presets_json)
+    return str(jsonify(presets_json))
 
 
 if __name__ == '__main__':
