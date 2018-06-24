@@ -19,8 +19,8 @@ def _get_camera():
     try:
         cam = getattr(g, '_cam', None)
         if cam is None:
-            # cam = g._cam = PtzCam('192.168.1.110', 8999, 'admin', '', '/home/pi/camApi/venv/wsdl/')
-            cam = g._cam = PtzCam('85.12.222.142', 8999, 'admin', '', '/Users/vagano/PycharmProjects/camApi/venv/wsdl/')
+            cam = g._cam = PtzCam('192.168.1.110', 8999, 'admin', '', '/home/pi/camApi/venv/wsdl/')
+            # cam = g._cam = PtzCam('85.12.222.142', 8999, 'admin', '', '/Users/vagano/PycharmProjects/camApi/venv/wsdl/')
         return cam
     except Exception as e:
         app.logger.error(str(e))
