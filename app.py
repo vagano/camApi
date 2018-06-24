@@ -31,7 +31,7 @@ def _get_presets():
         presets = getattr(g, '_presets', None)
         if presets is None:
             cam = _get_camera()
-            presets = g._presets = jsonify(cam.get_presets())
+            presets = g._presets = cam.get_presets()
         return presets
     except Exception as e:
         app.logger.error(str(e))
