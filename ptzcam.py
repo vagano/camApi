@@ -8,11 +8,21 @@ class PtzCam():
         self.media_profile = self.media.GetProfiles()[0]
         self.ptz = self.mycam.create_ptz_service()
 
+        self.requests = self.ptz.create_type('Stop')
+        self.requests.ProfileToken = self.media_profile._token
+
         self.requestc = self.ptz.create_type('ContinuousMove')
         self.requestc.ProfileToken = self.media_profile._token
 
         self.requestg = self.ptz.create_type('GotoPreset')
         self.requestg.ProfileToken = self.media_profile._token
+
+        self.stop()
+
+    def stop(self):
+        self.requests.PanTilt = True
+        self.requests.Zoom = True
+        self.ptz.Stop(self.requests)
 
     def get_presets(self):
         self.ptzPresetsList = self.ptz.GetPresets(self.requestc)
