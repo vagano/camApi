@@ -7,7 +7,22 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            var getUrlParameter = function getUrlParameter(sParam) {
+            $.ajax({
+                type: 'get',
+                url: 'https://mediarecorderui.uomz.ru/cam/api/move_to_preset/15',
+                headers: {"Authorization": "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c"},
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c");
+                },
+                success: function () {
+                    console.log('request was sent')
+                },
+                error: function () {
+                    console.log('request wasnt successful')
+                }
+            })
+
+            function getUrlParameter(sParam) {
                 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                     sURLVariables = sPageURL.split('&'),
                     sParameterName,
@@ -21,8 +36,6 @@
                     }
                 }
             };
-
-            lang = getUrlParameter("lang");
 
             var video = document.getElementById('video');
 
@@ -50,15 +63,22 @@
                     xhr.setRequestHeader("Authorization", "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c");
                 },
                 success: function (data) {
+                    i = 0;
                     $.each(data, function (index) {
                         $('#buttonsContainer').append(
-                            '<a class="button" data-preset="' +
+                            '<a class="button ' + ((i == 0) ? 'first' : '') + '" data-preset="' +
                             index +
                             '"><span class="ru">' +
                             this['name_ru'] + '</span>' +
                             '<span class="en">' +
-                            this['name_en'] + '</span></a>')
-                    })
+                            this['name_en'] + '</span></a>');
+                        if (i == 3)
+                            i = 0
+                        else
+                            i++
+                    });
+
+                    var lang = getUrlParameter("lang");
 
                     if (lang == "ru") {
                         $(".en").hide();
@@ -80,26 +100,24 @@
                                 xhr.setRequestHeader("Authorization", "JWT dfcb6ba8-95fd-4941-83c7-80671c5f728c");
                             },
                             success: function () {
-                                console.log('request was sent')
+                                console.log('request was sent');
                             },
                             error: function () {
-                                console.log('request wasnt successful')
+                                console.log('request wasnt successful');
                             }
-                        })
-                    })
+                        });
+                    });
                 },
                 error: function () {
-                    console.log('request wasnt successful')
+                    console.log('request wasnt successful');
                 }
             })
         })
     </script>
 </head>
 <body>
-<h1 class="en">Look at city views</h1>
-<h1 class="ru">Посмотрите на виды города</h1>
 <div id="videoContainer">
-    <video id="video" autoplay></video>
+    <video id="video" autoplay muted></video>
 </div>
 
 <div id="buttonsContainer">
