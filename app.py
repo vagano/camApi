@@ -44,6 +44,7 @@ def get_presets_list():
 
         try:
             for p in presets:
+                return str(p._token)
                 token = str(p._token)
                 presets_json[token]['token_name'] = p.Name
 
