@@ -52,7 +52,7 @@ def get_presets_list():
                     "name_en": presets_dict[token_name]['en']
                 }
         except Exception as e:
-            return "Errore: "+str(e)
+            pass
 
         with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
             json.dump(presets_json, jsonfile)
