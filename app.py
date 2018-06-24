@@ -56,7 +56,7 @@ def get_presets_list():
 
         try:
             with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
-                json.dump(jsonify(presets_json), jsonfile)
+                json.dump(presets_json, jsonfile, ensure_ascii=False)
         except Exception as e:
             return str(e)
     else:
