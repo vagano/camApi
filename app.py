@@ -44,11 +44,11 @@ if __name__ == '__main__':
     handler.setLevel(logging.DEBUG)
     app.logger.addHandler(handler)
 
-    if not os.path.isfile('presets.json'):
+    if not os.path.isfile('/home/pi/camApi/presets.json'):
         presets = _get_presets()
         presets_json = {}
 
-        with open('presets_dict.json','r') as jsondictfile:
+        with open('/home/pi/camApi/presets_dict.json', 'r') as jsondictfile:
             presets_dict = json.load(jsondictfile)
 
         for p in presets:
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             except:
                 pass
 
-        with open('presets.json','w') as jsonfile:
+        with open('/home/pi/camApi/presets.json', 'w') as jsonfile:
             json.dump(presets_json, jsonfile)
 
     app.run()
