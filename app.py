@@ -69,7 +69,7 @@ def get_presets_list():
     return jsonify(presets_json)
 
 
-@app.route('/cam/api/move_to_preset/<token:int>/')
+@app.route('/cam/api/move_to_preset/<int:token>')
 def move_to_preset(token):
     try:
         cam = _get_camera()
