@@ -36,4 +36,7 @@ h1 {
     background: aquamarine;
     display: block;
     font-size: 0.5em;
+    margin-right: 20px;
+    margin-top: 20px;
+    float: left;
 }
