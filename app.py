@@ -50,6 +50,8 @@ def get_presets_list():
 
                 presets_json[token]['name_ru'] = presets_dict[token_name]['ru']
                 presets_json[token]['name_en'] = presets_dict[token_name]['en']
+
+                return str(presets_json)
         except Exception as e:
             return "Errore: "+str(e)
 
