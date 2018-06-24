@@ -19,7 +19,7 @@ def _get_presets():
     return presets
 
 
-@app.route('/cam/api/get_presets_list')
+@app.route('/cam/api/get_presets_list/')
 def get_presets_list():
     presets = _get_presets()
     return presets
